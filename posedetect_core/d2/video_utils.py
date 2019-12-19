@@ -2,6 +2,7 @@ import cv2
 import logging
 from os import path
 
+
 def get_video_dims(video_path):
     vid = cv2.VideoCapture(video_path)
     width = vid.get(cv2.CAP_PROP_FRAME_WIDTH)

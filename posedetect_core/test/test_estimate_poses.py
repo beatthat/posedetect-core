@@ -8,6 +8,7 @@ from posedetect_core.estimate_poses import estimate_poses_task
 from .test_helpers import (
     expect_3d_keypoint_estimates_for_every_frame_accurate_within_margin_of_error,
     get_video_dims,
+    fixture_path,
 )
 
 
@@ -19,14 +20,9 @@ class __AttrDict(dict):
 @pytest.mark.parametrize(
     "video_dir,video_file,expected_frames_header,expected_frames_processed",
     [
+        ("resources/videos/one_person_no_cuts_01", "video.mp4", 73, 61),
         (
-            "/tests/api/features/resources/videos/one_person_no_cuts_01",
-            "video.mp4",
-            73,
-            61,
-        ),
-        (
-            "/tests/api/features/resources/videos/converts_mov_to_mp4",
+            "resources/videos/converts_mov_to_mp4",
             "video.mov",
             73,
             62,  # NOTE: the transcode seems to add a frame,
@@ -47,6 +43,7 @@ def test_estimate_poses_task(
     task = __AttrDict(
         {"request": __AttrDict({"id": "test"}), "update_state": collect_progress}
     )
+    video_dir = fixture_path(video_dir)
     video_path = os.path.join(video_dir, video_file)
     video_dims = get_video_dims(video_path)
     result_meta = estimate_poses_task(task, video_path, "anything{}")

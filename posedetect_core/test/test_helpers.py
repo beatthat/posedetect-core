@@ -1,9 +1,14 @@
+from os import path
 from typing import List
 
 import cv2
 from hamcrest import assert_that, equal_to, less_than, only_contains
 import numpy as np
 from pyshould import should, all_of
+
+
+def fixture_path(rel_path: str) -> str:
+    return path.join(path.dirname(path.abspath(__file__)), "fixtures", rel_path)
 
 
 def expect_progress_callbacks(
