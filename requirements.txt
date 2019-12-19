@@ -1,0 +1,8 @@
+celery==3.1.17
+ffmpy==0.2.2
+numpy==1.16.2
+opencv-python-headless==4.1.2.30
+protobuf==3.10.0
+pyhamcrest==1.9.0
+pyshould==0.7.1
+#redis==2.10.3
