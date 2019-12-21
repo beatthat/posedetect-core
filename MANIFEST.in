@@ -10,7 +10,8 @@ include *.txt
 include *.yml
 include *.yaml
 recursive-include bin   *.py *.bash *.sh
-recursive-include mentor_classifier *.py
+recursive-include posedetect_core *.py
+recursive-include posedetect_core/test/fixtures *
 recursive-include py.requirements  *.txt
 
 prune .venv*
