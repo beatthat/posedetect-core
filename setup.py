@@ -22,6 +22,8 @@ setup(
     author_email="larrykirschner@gmail.com",
     description="python core types for posedetect",
     packages=packages,
+    package_dir={'posedetect_core': 'posedetect_core'},
+    package_data={'posedetect_core': ['data/fixtures/resources/videos/**/*']},
     install_requires=requirements,
     long_description=long_description,
     long_description_content_type='text/markdown',
