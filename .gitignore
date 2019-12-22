@@ -1,0 +1,15 @@
+.coverage
+.coverage.*
+.DS_Store
+.log
+.mypy_cache
+.vscode
+.venv
+__pycache__
+build
+dist
+htmlcov
+out
+*.egg-info
+*.log
+*.pyc
