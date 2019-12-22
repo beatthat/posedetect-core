@@ -31,6 +31,9 @@ test: $(VENV)
 format: $(VENV)
 	$(VENV)/bin/black posedetect_core
 
+.PHONY: test-all
+test-all: test-format test-lint test-types test
+
 .PHONY: test-format
 test-format: $(VENV)
 	$(VENV)/bin/black --check posedetect_core
@@ -39,5 +42,6 @@ test-format: $(VENV)
 test-lint: $(VENV)
 	$(VENV)/bin/flake8 .
 
-.PHONY: test-all
-test-all: test-format test-lint test
+.PHONY: test-types
+test-types: $(VENV)
+	. $(VENV)/bin/activate && mypy posedetect_core

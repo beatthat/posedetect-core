@@ -9,7 +9,7 @@ config = dict()
 config["CELERY_BROKER_URL"] = "redis://redis:6379/0"
 config["CELERY_RESULT_BACKEND"] = "redis://redis:6379/0"
 
-config["CELERY_ACCEPT_CONTENT"] = ["json"]
+config["CELERY_ACCEPT_CONTENT"] = ["json"]  # type: ignore
 config["CELERY_TASK_SERIALIZER"] = "json"
 config["CELERY_EVENT_SERIALIZER"] = "json"
 config["CELERY_RESULT_SERIALIZER"] = "json"

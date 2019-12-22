@@ -1,5 +1,5 @@
 from os import path
-from typing import List
+from typing import Tuple
 
 import cv2
 from hamcrest import assert_that, equal_to, less_than, only_contains
@@ -236,7 +236,7 @@ def highest_confidence_box(boxes):
     return i, b
 
 
-def get_video_dims(video_path: str) -> List[int]:
+def get_video_dims(video_path: str) -> Tuple[int, int]:
     vid = cv2.VideoCapture(video_path)
     width = vid.get(cv2.CAP_PROP_FRAME_WIDTH)
     height = vid.get(cv2.CAP_PROP_FRAME_HEIGHT)

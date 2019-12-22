@@ -1,25 +1,17 @@
-from abc import abstractmethod, ABCMeta
+from abc import abstractmethod, ABC
 from importlib import import_module
-
-
-# compatible with Python 2 *and* 3:
-ABC = ABCMeta("ABC", (object,), {"__slots__": ()})
+from numpy import ndarray
+from typing import Any, Callable, Dict, Optional
 
 
 class PoseEstimates3DModel(ABC):
     @abstractmethod
-    def predict(self, video_path, on_progress_cb=None):
-        """Generator yields inferred boxes and keypoints for a sequence of images
-
-        Args:
-            video_path
-
-        Returns:
-            {
-                output_keypoints_3d
-            }
-        """
-        return None
+    def predict(
+        self,
+        video_path: str,
+        on_progress_cb: Optional[Callable[[str, Dict[str, Any]], None]] = None,
+    ) -> ndarray:
+        raise NotImplementedError()
 
     @abstractmethod
     def visualize(
@@ -41,7 +33,7 @@ class PoseEstimates3DModel(ABC):
         test_time_augmentation=False,
         **kwargs
     ):
-        return None
+        raise NotImplementedError()
 
 
 class PoseEstimates3DModelFactory(ABC):
@@ -50,14 +42,14 @@ class PoseEstimates3DModelFactory(ABC):
     """
 
     @abstractmethod
-    def create(self):
-        return None
+    def create(self) -> PoseEstimates3DModel:
+        raise NotImplementedError()
 
 
 __factories_by_module_path = {}
 
 
-def create_model(module_path):
+def create_model(module_path: str) -> PoseEstimates3DModel:
     """
         Creates a PoseEstimates3DModel given a module path
 
@@ -70,7 +62,7 @@ def create_model(module_path):
     return create_model_factory(module_path).create()
 
 
-def register_model_factory(module_path, fac):
+def register_model_factory(module_path: str, fac: PoseEstimates3DModelFactory) -> None:
     """
         Register a PoseEstimates3DModelFactory for a module_path
 
@@ -83,7 +75,7 @@ def register_model_factory(module_path, fac):
     __factories_by_module_path[module_path] = fac
 
 
-def create_model_factory(module_path):
+def create_model_factory(module_path) -> PoseEstimates3DModelFactory:
     """
         Creates a PoseEstimates3DModelFactory given module path.
 

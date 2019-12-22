@@ -1,11 +1,8 @@
-from abc import abstractmethod, ABCMeta
+from abc import abstractmethod, ABC
 import os
 from importlib import import_module
 
 import numpy as np
-
-# compatible with Python 2 *and* 3:
-ABC = ABCMeta("ABC", (object,), {"__slots__": ()})
 
 
 def detect_boxes_and_keypoints_task(task, video_path, result_url_format):
